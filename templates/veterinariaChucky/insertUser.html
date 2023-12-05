@@ -1,0 +1,31 @@
+{% extends 'insertProduct.html' %} 
+{% block titulo %} Veterinaria ChuckyPB | Insertar Usuarios {% endblock %}
+
+{% block h1_titulo %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 text-center">
+      <h1 class="display-4 bg-light p-3 rounded-pill shadow-sm">Insertar Usuarios</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block contenido %}
+<div class="container bg-light p-3 rounded">
+  <form method="POST" class="mt-3">
+    {% csrf_token %}
+    <span class="text-danger">
+      {{ form.non_field_errors }}
+    </span>
+      {{ form.as_p }}
+    <div class="container-fluid">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-primary">{{ title }}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

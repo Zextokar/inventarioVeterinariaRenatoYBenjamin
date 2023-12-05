@@ -1,0 +1,62 @@
+{% extends 'all_pages.html' %} 
+{% block titulo %} Veterinaria ChuckyPB | Categorias {% endblock %}
+
+{% block h1_titulo %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 text-center">
+      <h1 class="display-4 bg-light p-3 rounded-pill shadow-sm">Lista de Categorias</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block contenido %}
+<hr>
+{% if productos %}
+<table id="miTabla" class="table table-striped nowrap" style="width:100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for producto in productos %}
+    <tr>
+      <td>{{ producto.id }}</td>
+      <td>{{ producto.codigo }}</td>
+      <td>{{ producto.nombre }}</td>
+      <td>
+        <a href="/editCategory/{{ producto.id }}" class="btn btn-success">
+          <i class="bi bi-pencil-square"></i>
+      </a>
+      {% if user.is_superuser %}
+      <a href="/deleteCategory/{{ producto.id }}" class="btn btn-danger">
+        <i class="bi bi-trash"></i>
+      </a>
+      {% else %}
+      {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center centrar-contenedor">
+    <div class="col-12 text-center">
+      <div class="alert alert-danger" role="alert">
+        <strong>¡Atención!</strong> No hay categorias en la Base de Datos.
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+{% endif %} {% endblock %}
+
+{% block insert %}
+<a class="btn btn-primary mt-3" href="{% url 'insertCategory' %}">Agregar Categorias</a>
+{% endblock %}

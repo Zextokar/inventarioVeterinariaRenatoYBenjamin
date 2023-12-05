@@ -1,0 +1,74 @@
+{% extends 'all_pages.html' %} 
+{% block titulo %} Veterinaria ChuckyPB | Productos {% endblock %}
+
+{% block h1_titulo %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 text-center">
+      <h1 class="display-4 bg-light p-3 rounded-pill shadow-sm">Lista de Productos</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<hr>
+
+{% if productos %}
+  <table class="table table-striped nowrap" style="width: 100%;" id="miTabla">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Categoría</th>
+        <th>Encargado</th>
+        <th>Acción</th>
+      </tr>    
+    </thead>
+    <tbody>
+      {% for producto in productos %}
+        {% if user.is_superuser or producto.user == user %}
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.categoria.nombre }}</td>
+            <td>{{ producto.user.username }}</td>
+            <td>
+              <a href="/editProducto/{{ producto.id }}" class="btn btn-success">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              {% if user.is_superuser %}
+                <a href="/deleteProducto/{{ producto.id }}" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center centrar-contenedor">
+      <div class="col-12 text-center">
+        <div class="alert alert-danger" role="alert">
+          <strong>¡Atención!</strong> No hay productos en la Base de Datos.
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+{% endif %}
+
+{% endblock %}
+
+{% block insert %}
+<a class="btn btn-primary mt-3" href="{% url 'insertProducts' %}">Agregar Productos</a>
+{% endblock %}

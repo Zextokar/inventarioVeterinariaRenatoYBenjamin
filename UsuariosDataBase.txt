@@ -1,0 +1,14 @@
+Usuarios:
+
+Administrador:
+
+User: admin
+Password: admin123
+
+Usuarios Normales:
+
+User: user
+Password: user123@
+
+User: usuario
+Password: user321@

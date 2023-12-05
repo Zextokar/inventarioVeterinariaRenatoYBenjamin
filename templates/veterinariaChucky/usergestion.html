@@ -1,0 +1,68 @@
+{% extends 'all_pages.html' %} 
+{% block titulo %} Veterinaria ChuckyPB | Usuarios {% endblock %}
+
+{% block h1_titulo %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 text-center">
+      <h1 class="display-4 bg-light p-3 rounded-pill shadow-sm">Lista de Usuarios</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<hr>
+
+{% if productos %}
+  <table id="miTabla" class="table table-striped nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Administrador</th>
+        <th>Staff</th>
+        <th>Acción</th>
+      </tr>    
+    </thead>
+    <tbody>
+      {% for producto in productos %}
+        {% if user.is_superuser or producto.user == user %}
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.username }}</td>
+            <td>{{ producto.is_superuser }}</td>
+            <td>{{ producto.is_staff }}</td>
+            <td>
+              <a href="/editUser/{{ producto.id }}" class="btn btn-success">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              {% if user.is_superuser %}
+                <a href="/deleteUser/{{ producto.id }}" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center centrar-contenedor">
+      <div class="col-12 text-center">
+        <div class="alert alert-danger" role="alert">
+          <strong>¡Atención!</strong> No hay productos en la Base de Datos.
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+{% endif %}
+
+{% endblock %}
+
+{% block insert %}
+<a class="btn btn-primary mt-3" href="{% url 'insertUser' %}">Agregar Usuarios</a>
+{% endblock %}
