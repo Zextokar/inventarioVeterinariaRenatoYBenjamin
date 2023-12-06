@@ -32,11 +32,9 @@
         <a href="/editCategory/{{ producto.id }}" class="btn btn-success">
           <i class="bi bi-pencil-square"></i>
       </a>
-      {% if user.is_superuser %}
       <a href="/deleteCategory/{{ producto.id }}" class="btn btn-danger">
         <i class="bi bi-trash"></i>
       </a>
-      {% else %}
       {% endif %}
       </td>
     </tr>

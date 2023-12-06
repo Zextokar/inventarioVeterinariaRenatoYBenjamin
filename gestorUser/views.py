@@ -37,7 +37,7 @@ def InsertUser(request):
         'title': 'Registrar Usuario'
     }
 
-    return render(request, 'veterinariaChucky/insertUser.html', data)
+    return render(request, 'veterinariaChucky/insertComponents.html', data)
 
 @login_required
 def editUser(request, id):
@@ -55,7 +55,7 @@ def editUser(request, id):
         'form': form,
         'title': 'Editar Usuarios'
     }
-    return render(request, 'veterinariaChucky/insertUser.html', data)
+    return render(request, 'veterinariaChucky/insertComponents.html', data)
 
 @login_required
 def deleteUser(request, id):

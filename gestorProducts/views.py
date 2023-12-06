@@ -33,7 +33,7 @@ def insertProductos(request):
         'title': 'Registrar Producto'
     }
 
-    return render(request, 'veterinariaChucky/insertProduct.html', data)
+    return render(request, 'veterinariaChucky/insertComponents.html', data)
 
 @login_required
 def editarProductos(request, id):
@@ -51,7 +51,7 @@ def editarProductos(request, id):
         'form': form,
         'title': 'Editar Productos'
     }
-    return render(request, 'veterinariaChucky/insertProduct.html', data)
+    return render(request, 'veterinariaChucky/insertComponents.html', data)
 @login_required
 def eliminarProductos(request, id):
     if request.user.is_superuser:
@@ -92,7 +92,7 @@ def insertCategorias(request):
         'title': 'Registrar Categoria'
     }
 
-    return render(request, 'veterinariaChucky/insertCategory.html', data)
+    return render(request, 'veterinariaChucky/insertComponents.html', data)
     
 @login_required
 def editarCategoria(request, id):
@@ -110,7 +110,7 @@ def editarCategoria(request, id):
         'form': form,
         'title': 'Editar Categoria'
     }
-    return render(request, 'veterinariaChucky/insertCategory.html', data)
+    return render(request, 'veterinariaChucky/insertComponents.html', data)
 
 @login_required
 def eliminarCategoria(request, id):
